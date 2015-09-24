@@ -9,6 +9,7 @@ import Reindex from 'reindex-js';
 import schemaRelay from './commands/schemaRelay';
 import schemaFetch from './commands/schemaFetch';
 import schemaPush from './commands/schemaPush';
+import graphiqlLink from './commands/graphiqlLink';
 
 const COMMANDS = {
   'schema-relay': {
@@ -25,6 +26,11 @@ const COMMANDS = {
     command: schemaPush,
     needsAPI: true,
     description: 'push new schema to Reindex',
+  },
+  'graphiql': {
+    command: graphiqlLink,
+    needsAPI: true,
+    description: 'open Reindex GraphiQL browser console for your app',
   },
   'help': {
     command: printCommands,
