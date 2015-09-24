@@ -75,10 +75,11 @@ export default async function cli(args) {
     }
 
     await command.command(reindex, params);
+  } else if (commandName) {
+    process.stdout.write(chalk.red(
+      `'${commandName}' is not a Reindex command. See 'reindex help'. \n`
+    ));
   } else {
-    if (commandName) {
-      process.stdout.write(chalk.red(`Unknown command ${commandName}\n`));
-    }
     printCommands();
   }
 }
