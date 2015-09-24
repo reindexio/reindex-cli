@@ -1,6 +1,6 @@
 # reindex-cli
 
-CLI interface for Reindex
+CLI interface for Reindex ([https://www.reindex.io](https://www.reindex.io))
 
 ```
 npm install -g reindex-cli
