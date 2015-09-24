@@ -33,6 +33,11 @@ either with this flag or via `REINDEX_TOKEN` enviroment variable.
 
 ## Usage
 
+##### `reindex graphiql`
+
+Opens [GraphiQL](https://github.com/graphql/graphiql) console for your
+Reindex app in your browser.
+
 ##### `reindex schema-fetch [SCHEMA_FILE]`
 
 Fetch Reindex JSON schema to `SCHEMA_FILE` file (`ReindexSchema.json` if not
