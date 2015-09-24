@@ -41,7 +41,7 @@ const COMMANDS = {
 const PARAMETERS = {
   'url': {
     alias: ['u', 'url'],
-    description: 'Reindex API URL (https://YOURAPP.reindexio.com)',
+    description: 'Reindex API URL (https://YOURAPP.myreindex.com)',
   },
   'token': {
     alias: ['t', 'token'],
@@ -66,7 +66,7 @@ export default async function cli(args) {
 
       if (!reindex._url) {
         process.stderr.write(chalk.red(
-          `Please specify REINDEX_URL (https://YOURAPP.reindexio.com) with` +
+          `Please specify REINDEX_URL (https://YOURAPP.myreindex.com) with` +
           ` either -u (--url) flag or REINDEX_URL enviroment variable.\n`
         ));
         return;

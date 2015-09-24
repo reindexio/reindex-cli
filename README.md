@@ -10,20 +10,20 @@ npm install -g reindex-cli
 via enviroment.
 
 ```
-REINDEX_URL="https://MYREINDEXAPP.reindexio.com" REINDEX_TOKEN="TOKEN" reindex
+REINDEX_URL="https://MYREINDEXAPP.myreindex.com" REINDEX_TOKEN="TOKEN" reindex
 ```
 
 or
 
 ```
-reindex -u https://MYREINDEXAPP.reindex.com -t TOKEN
+reindex -u https://MYREINDEXAPP.myreindex.com -t TOKEN
 ```
 
 ## Options
 
 ##### `-u REINDEX_URL --url REINDEX_URL`
 
-Your Reindex application host (eg `https://YOURAPP.reindexio.com`). Can be set
+Your Reindex application host (eg `https://YOURAPP.myreindex.com`). Can be set
 either with this flag or via `REINDEX_URL` enviroment variable.
 
 ##### `-t REINDEX_TOKEN --token REINDEX_TOKEN`
