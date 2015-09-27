@@ -6,8 +6,8 @@ import chalk from 'chalk';
 
 const SCHEMA_QUERY = `
   query schemaQuery {
-    list {
-      ofReindexType {
+    viewer {
+      allReindexTypes {
         nodes {
           name,
           kind,
@@ -55,7 +55,7 @@ async function fetchSchema(reindex, passedTarget) {
     process.stderr.write(JSON.stringify(result.errors, null, 2));
     process.stderr.write('\n');
   } else {
-    const types = result.data.list.ofReindexType.nodes;
+    const types = result.data.viewer.allReindexTypes.nodes;
     const processed = types.map((type) => {
       const cleanType = omit(type, (value) => value === null);
       cleanType.fields = cleanType.fields.map(
