@@ -25,14 +25,13 @@ async function pushSchema(reindex, passedTarget, { dryRun, force }) {
     process.stdout.write(`Reading schema from ${target}...\n`);
     const schema = JSON.parse(fs.readFileSync(target));
     process.stdout.write(`Requesting migration from API...\n`);
-    const response = await reindex.query(MIGRATE_QUERY, {
+    const result = await reindex.query(MIGRATE_QUERY, {
       input: {
         dryRun,
         force,
         types: schema,
       },
     });
-    const result = await response.json();
     if (result.errors) {
       process.stderr.write(chalk.yellow('\nValidation errors:\n\n'));
       let errors = result.errors;
