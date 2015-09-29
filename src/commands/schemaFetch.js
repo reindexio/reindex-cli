@@ -48,24 +48,27 @@ async function fetchSchema(reindex, passedTarget) {
     throw new Error(chalk.red(`File ${target} already exists.`));
   }
 
-  process.stdout.write(`Fetching Reindex schema from ${reindex._url}...\n`);
-  const response = await reindex.query(SCHEMA_QUERY);
-  const result = await response.json();
-  if (result.errors) {
-    process.stderr.write(JSON.stringify(result.errors, null, 2));
-    process.stderr.write('\n');
-  } else {
-    const types = result.data.viewer.allReindexTypes.nodes;
-    const processed = types.map((type) => {
-      const cleanType = omit(type, (value) => value === null);
-      cleanType.fields = cleanType.fields.map(
-        (field) => omit(field, (value) => value === null)
-      );
-      return cleanType;
-    });
-    process.stdout.write(`Writing to ${target}...\n`);
-    fs.writeFileSync(target, JSON.stringify(processed, null, 2) + '\n');
-    process.stdout.write('Done!\n');
+  try {
+    process.stdout.write(`Fetching Reindex schema from ${reindex._url}...\n`);
+    const result = await reindex.query(SCHEMA_QUERY);
+    if (result.errors) {
+      process.stderr.write(JSON.stringify(result.errors, null, 2));
+      process.stderr.write('\n');
+    } else {
+      const types = result.data.viewer.allReindexTypes.nodes;
+      const processed = types.map((type) => {
+        const cleanType = omit(type, (value) => value === null);
+        cleanType.fields = cleanType.fields.map(
+          (field) => omit(field, (value) => value === null)
+        );
+        return cleanType;
+      });
+      process.stdout.write(`Writing to ${target}...\n`);
+      fs.writeFileSync(target, JSON.stringify(processed, null, 2) + '\n');
+      process.stdout.write('Done!\n');
+    }
+  } catch (e) {
+    throw e;
   }
 }
 
