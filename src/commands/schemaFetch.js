@@ -7,7 +7,7 @@ import chalk from 'chalk';
 const SCHEMA_QUERY = `
   query schemaQuery {
     viewer {
-      allReindexTypes {
+      allReindexTypes(first: 2147483647) {
         nodes {
           name,
           kind,
