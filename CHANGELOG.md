@@ -1,5 +1,9 @@
 # Change log
 
+## 0.3.1 (October 7, 2015)
+
+* Fix a bug where `schema-fetch` only fetched 10 types (#5).
+
 ## 0.3.0 (September 29, 2015)
 
 * Update reindex-js to version 0.2.0
