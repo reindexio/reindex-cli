@@ -38,10 +38,12 @@ either with this flag or via `REINDEX_TOKEN` enviroment variable.
 Opens [GraphiQL](https://github.com/graphql/graphiql) console for your
 Reindex app in your browser.
 
-##### `reindex schema-fetch [SCHEMA_FILE]`
+##### `reindex schema-fetch [SCHEMA_FILE] [--force]`
 
 Fetch Reindex JSON schema to `SCHEMA_FILE` file (`ReindexSchema.json` if not
-provided). Requires the file to not exist.
+provided).
+
+If `--force` flag is not set, it will not run if schema file already exists.
 
 ##### `reindex schema-push [SCHEMA_FILE] [--dry-run --force]`
 
