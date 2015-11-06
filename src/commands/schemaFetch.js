@@ -38,14 +38,16 @@ const SCHEMA_QUERY = `
   }
 `;
 
-async function fetchSchema(reindex, passedTarget) {
+async function fetchSchema(reindex, passedTarget, { force }) {
   let target = passedTarget;
   if (!target) {
     target = './ReindexSchema.json';
   }
 
-  if (await isThere(target)) {
-    throw new Error(chalk.red(`File ${target} already exists.`));
+  if (!force && await isThere(target)) {
+    throw new Error(chalk.red(
+      `File ${target} already exists. Use --force to overwrite.`
+    ));
   }
 
   try {
@@ -73,5 +75,7 @@ async function fetchSchema(reindex, passedTarget) {
 }
 
 export default function schemaFetch(reindex, args) {
-  return fetchSchema(reindex, args._[1]);
+  return fetchSchema(reindex, args._[1], {
+    force: args.force,
+  });
 }
