@@ -30,7 +30,8 @@ const SCHEMA_QUERY = `
             defaultOrdering {
               field,
               order
-            }
+            },
+            unique
           }
         }
       }
