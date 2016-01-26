@@ -1,5 +1,13 @@
 # Change log
 
+## 0.3.4
+
+* Update schema-fetch for new permission system
+
+## 0.3.2
+
+* Add --force flag to schema-fetch
+
 ## 0.3.1 (October 7, 2015)
 
 * Fix a bug where `schema-fetch` only fetched 10 types (#5).
