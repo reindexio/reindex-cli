@@ -9,29 +9,40 @@ const SCHEMA_QUERY = `
     viewer {
       allReindexTypes(first: 2147483647) {
         nodes {
-          name,
-          kind,
-          interfaces,
+          name
+          kind
+          interfaces
           fields {
-            name,
-            type,
-            description,
-            nonNull,
-            builtin,
-            deprecationReason,
-            ofType,
-            reverseName,
+            name
+            type
+            description
+            nonNull
+            builtin
+            deprecationReason
+            ofType
+            reverseName
             grantPermissions {
-              read,
-              create,
-              update,
-              delete,
-            },
+              read
+              create
+              update
+              delete
+              permittedFields
+            }
             defaultOrdering {
-              field,
+              field
               order
-            },
+            }
             unique
+            orderable
+          }
+          permissions {
+            grantee
+            userPath
+            read
+            create
+            update
+            delete
+            permittedFields
           }
         }
       }
@@ -63,6 +74,11 @@ async function fetchSchema(reindex, passedTarget, { force }) {
         const cleanType = omit(type, (value) => value === null);
         cleanType.fields = cleanType.fields.map(
           (field) => omit(field, (value) => value === null)
+        );
+        cleanType.permissions = (
+          cleanType.permissions && cleanType.permissions.map(
+            (permission) => omit(permission, (value) => value === null)
+          )
         );
         return cleanType;
       });
