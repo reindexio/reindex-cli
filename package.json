@@ -1,6 +1,6 @@
 {
   "name": "reindex-cli",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "CLI interface for Reindex",
   "bin": {
     "reindex": "bin/reindex"
