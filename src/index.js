@@ -6,12 +6,26 @@ import chalk from 'chalk';
 
 import Reindex from 'reindex-js';
 
+import getCredentials from './getCredentials';
+
+import login from './commands/login';
+import logout from './commands/logout';
 import schemaRelay from './commands/schemaRelay';
 import schemaFetch from './commands/schemaFetch';
 import schemaPush from './commands/schemaPush';
 import graphiqlLink from './commands/graphiqlLink';
 
 const COMMANDS = {
+  'login': {
+    command: login,
+    needsAPI: false,
+    description: 'login into Reindex',
+  },
+  'logout': {
+    command: logout,
+    needsAPI: false,
+    description: 'logout from Reindex',
+  },
   'schema-relay': {
     command: schemaRelay,
     needsAPI: true,
@@ -59,25 +73,12 @@ export default async function cli(args) {
 
     const reindex = new Reindex();
     if (command.needsAPI) {
-      reindex._url = params.url ? params.url[0] : process.env.REINDEX_URL;
-      reindex.setToken(
-        params.token ? params.token[0] : process.env.REINDEX_TOKEN
-      );
-
-      if (!reindex._url) {
-        process.stderr.write(chalk.red(
-          `Please specify REINDEX_URL (https://YOURAPP.myreindex.com) with` +
-          ` either -u (--url) flag or REINDEX_URL enviroment variable.\n`
-        ));
+      const { url, token } = getCredentials(params);
+      if (!(url && token)) {
         return;
       }
-      if (!reindex._token) {
-        process.stderr.write(chalk.red(
-          `Please specify REINDEX_TOKEN with either -t (--token) flag or ` +
-          `REINDEX_TOKEN enviroment variable.\n`
-        ));
-        return;
-      }
+      reindex._url = url;
+      reindex.setToken(token);
     }
 
     await command.command(reindex, params);

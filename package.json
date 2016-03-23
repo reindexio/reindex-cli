@@ -28,13 +28,16 @@
   "homepage": "https://github.com/reindexio/reindex-cli#readme",
   "dependencies": {
     "babel-runtime": "^5.8.20",
+    "bluebird": "^3.3.4",
     "chalk": "^1.1.1",
     "graphql": "^0.4.3",
     "is-there": "^4.0.0",
     "isomorphic-fetch": "^2.1.1",
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
+    "netrc": "^0.1.4",
     "open": "0.0.5",
+    "promptly": "^1.1.0",
     "reindex-js": "^0.3.1"
   },
   "devDependencies": {
