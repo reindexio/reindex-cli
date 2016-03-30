@@ -3,6 +3,7 @@ import fs from 'fs';
 import { omit } from 'lodash';
 import isThere from 'is-there';
 import chalk from 'chalk';
+import JSON5 from 'json5';
 
 const SCHEMA_QUERY = `
   query schemaQuery {
@@ -83,7 +84,7 @@ async function fetchSchema(reindex, passedTarget, { force }) {
         return cleanType;
       });
       process.stdout.write(`Writing to ${target}...\n`);
-      fs.writeFileSync(target, JSON.stringify(processed, null, 2) + '\n');
+      fs.writeFileSync(target, JSON5.stringify(processed, null, 2) + '\n');
       process.stdout.write('Done!\n');
     }
   } catch (e) {

@@ -1,6 +1,8 @@
 import fs from 'fs';
 
 import chalk from 'chalk';
+import JSON5 from 'json5';
+
 
 const MIGRATE_QUERY = `
   mutation migration($input: ReindexMigrationInput!) {
@@ -23,7 +25,7 @@ async function pushSchema(reindex, passedTarget, { dryRun, force }) {
 
   try {
     process.stdout.write(`Reading schema from ${target}...\n`);
-    const schema = JSON.parse(fs.readFileSync(target));
+    const schema = JSON5.parse(fs.readFileSync(target));
     process.stdout.write(`Requesting migration from API...\n`);
     const result = await reindex.query(MIGRATE_QUERY, {
       input: {
