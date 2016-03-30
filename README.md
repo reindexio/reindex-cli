@@ -4,34 +4,21 @@ CLI interface for Reindex ([https://www.reindex.io](https://www.reindex.io))
 
 ```
 npm install -g reindex-cli
+reindex login
+reindex schema-fetch
 ```
-
-`REINDEX_URL` and `REINDEX_TOKEN` must be provided either via parameters or
-via enviroment.
-
-```
-REINDEX_URL="https://MYREINDEXAPP.myreindex.com" REINDEX_TOKEN="TOKEN" reindex
-```
-
-or
-
-```
-reindex -u https://MYREINDEXAPP.myreindex.com -t TOKEN
-```
-
-## Options
-
-##### `-u REINDEX_URL --url REINDEX_URL`
-
-Your Reindex application host (eg `https://YOURAPP.myreindex.com`). Can be set
-either with this flag or via `REINDEX_URL` enviroment variable.
-
-##### `-t REINDEX_TOKEN --token REINDEX_TOKEN`
-
-Your Reindex application authorization token. Can be set
-either with this flag or via `REINDEX_TOKEN` enviroment variable.
 
 ## Usage
+
+##### `reindex login [url] [token]`
+
+Login to Reindex using given Reindex URL and token. Prompts for url and token if
+they are not provided. Credentials are stored in `.netrc` file in user's HOME
+folder.
+
+##### `reindex logout`
+
+Clear stored credentials.
 
 ##### `reindex graphiql`
 
@@ -62,3 +49,17 @@ and displays the migration without running.
 Get Relay compatible GraphQL schema from Reindex API at `HOST`. `OUTPUT` is a
 file name. If output is specified, result is written into it. Otherwise result
 is written to stdout.
+
+## Options
+
+##### `-u REINDEX_URL --url REINDEX_URL`
+
+Your Reindex application host (eg `https://YOURAPP.myreindex.com`). Can be set
+either with this flag or via `REINDEX_URL` environment variable. If you use
+`reindex login`, this parameter overrides stored credentials.
+
+##### `-t REINDEX_TOKEN --token REINDEX_TOKEN`
+
+Your Reindex application authorization token. Can be set
+either with this flag or via `REINDEX_TOKEN` environment variable. If you use
+`reindex login`, this parameter overrides stored credentials.
