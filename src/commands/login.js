@@ -10,14 +10,14 @@ export default async function login(reindex, args) {
 
   if (!url) {
     url = await prompt('Reindex URL', {
-      validator: (value) => value && value.length > 0,
+      validator: (value) => value && value.length > 0 && value,
       retry: true,
     });
   }
 
   if (!token) {
     token = await prompt('Reindex Token', {
-      validator: (value) => value && value.length > 0,
+      validator: (value) => value && value.length > 0 && value,
       retry: true,
     });
   }
