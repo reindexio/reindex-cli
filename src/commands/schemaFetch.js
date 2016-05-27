@@ -35,6 +35,7 @@ const SCHEMA_QUERY = `
             }
             unique
             orderable
+            filterable
           }
           permissions {
             grantee
